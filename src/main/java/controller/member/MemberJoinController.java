@@ -9,15 +9,15 @@ import controller.Controller;
 import controller.HttpUtil;
 import service.MemberService;
 
+// 회원가입 흐름과 정보를 다루는 서브컨트롤러
+
+// 역할은 1. 회원가입정보에 대한 유효성 정보 체크
+// 2. 체크 통과시 해당 정보를 회원 빈즈에 저장
+// 3. 회원정보와 관련된 비지니스 로직(모델) memberservice 싱글톤 객체주소값을 받아와 모델의 Join 메소드를 동작
+// 4. 결과값을 반환받아 뷰단으로 포워딩
 
 public class MemberJoinController implements Controller {
 
-	// 회원가입 흐름과 정보를 다루는 서브컨트롤러
-	
-	// 역할은 1. 회원가입정보에 대한 유효성 정보 체크
-	// 2. 체크 통과시 해당 정보를 회원 빈즈에 저장
-	// 3. 회원정보와 관련된 비지니스 로직(모델) memberservice 싱글톤 객체주소값을 받아와 모델의 Join 메소드를 동작
-	// 4. 결과값을 반환받아 뷰단으로 포워딩
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class MemberJoinController implements Controller {
 		if(id.isEmpty()||pwd.isEmpty()||email.isEmpty()||birth.isEmpty()) {
 			
 			request.setAttribute("error", "모든 항목을 빠짐없이 적어주시기 바랍니다!");
-			HttpUtil.forward(request, response, "/MemberJoinInput.jsp");
+			HttpUtil.forward(request, response, "/member/MemberJoinInput.jsp");
 			return;
 		}
 		

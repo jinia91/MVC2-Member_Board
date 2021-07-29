@@ -5,6 +5,7 @@ import beans.MemberDTO;
 
 // 회원정보에 대한 로직을 담당하는 모델
 // 1. 회원가입 로직
+// 2. 로그인 로직
 
 public class MemberService {
 
@@ -20,13 +21,19 @@ public class MemberService {
 	
 	// 싱글톤 패턴 설계//
 	
+	
 	public MemberDAO dao = MemberDAO.getInstance();					 // 회원정보 관리에 필요한 DAO 호출, 역시나 같은 싱글톤 패턴	
 	
-	
-	
-	//1. 회원가입 메소드
+	//1. 회원가입 로직
 	public void MemberJoin(MemberDTO member) {
 		dao.memberJoin(member);						// 회원정보를 DB에 저장하는 DAO의 메소드 호출
+	}
+	
+	//2. 로그인 로직
+	public int MemberLogin(String id, String pwd) {
+		int loginResult = dao.memberLogin(id,pwd);  // 1,0,-1로 로직 결과값 반환
+		
+		return loginResult;
 	}
 	
 }

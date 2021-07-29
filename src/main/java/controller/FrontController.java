@@ -5,8 +5,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import controller.member.MemberJoinController;
+import controller.member.MemberLoginController;
 
 import java.util.*;
+
+
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 91111L; // 직렬화의 고유번호라고 보면 됨
@@ -19,10 +22,11 @@ public class FrontController extends HttpServlet {
 		// 1. 인풋되는 정보 인코딩 방식 정의
 		charset = sc.getInitParameter("charset"); 
 		
-		// 2. 서브 컨트롤러들 객체 생성
-		list = new HashMap<String, Controller>();
+		// 2. 서브 컨트롤러들 객체 생성 서브컨트롤러들도 사실상 싱글톤객체가 됨
+		list = new HashMap<String,Controller>();
 		
 		list.put("MemberJoin.do", new MemberJoinController()); 
+		list.put("MemberLogin.do", new MemberLoginController()); 
 
 	}
 
