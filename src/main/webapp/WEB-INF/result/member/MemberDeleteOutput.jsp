@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 결과</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<h3> ${id} 님 가입이 완료되었습니다! </h3>
+	<h3>${id} 님 성공적으로 탈퇴 되셨습니다.</h3>
 
-
-<a href="../index.jsp"> Home </a>
+	<a href="../index.jsp"> Home </a>
 
 </body>
 </html>

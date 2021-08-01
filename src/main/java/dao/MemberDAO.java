@@ -7,6 +7,10 @@ import beans.MemberDTO;
 // 1. DAO 작동에 필요한 유틸메소드(리소스 반환하기)
 // 2. 회원가입을 위한 빈즈 DB에 전달
 // 3. 로그인을 위한 데이터 비교대조 판별
+// 4. 회원 정보 찾기 
+// 5. 회원 정보 전체 불러오기
+// 6. 회원 정보 수정하기
+// 7. 회원 정보 삭제하기
 
 public class MemberDAO {
 
@@ -39,7 +43,7 @@ public class MemberDAO {
 
 	}
 
-	// 반환 2
+	// 리소스 반환 (2)
 	public void close(Connection conn, PreparedStatement ps) {
 		if (ps != null) {
 
@@ -114,5 +118,113 @@ public class MemberDAO {
 		return -1;
 
 	}
+	
+	// 4. 회원 비밀번호 찾기
+	public String memberSearch(String id, String email) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		
+		String pwd = null;				// 회원이 있으면 pwd 반환 , 없으면 "" 반환
+		conn = cp.getConnection();
+		
+		try {
+			psmt = conn.prepareStatement("select pwd from member where id=? and email=?");
+			psmt.setString(1, id);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				pwd = rs.getString(1);
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("회원찾기 오류 발생" + e);
+		}finally {
+			close(conn,psmt, rs);
+		}
+		
+		return pwd;
+		
+	}
+	
+	
+	// 5. 회원정보 전부 불러오기
+	public MemberDTO memberSearchAll(String id, String pwd) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		MemberDTO member = new MemberDTO();
+		
+		conn = cp.getConnection();
+		
+		try {
+			psmt = conn.prepareStatement("select * from member where id=? and pwd=?");
+			psmt.setString(1, id);
+			psmt.setString(2, pwd);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				member.setId(rs.getString(1));
+				member.setPwd(rs.getString(2));
+				member.setEmail(rs.getString(3));
+				member.setBirth(rs.getString(4));
+				member.setGender(rs.getString(5));
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("회원정보 전부 불러오기 오류 발생" + e);
+		}finally {
+			close(conn,psmt, rs);
+		}
+		return member;
+		
+	}
+	
+	
+	// 6. 회원정보 db 수정
+	public void memberUpdate(MemberDTO member){
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		
+		conn = cp.getConnection();
+		
+		try {
+			psmt = conn.prepareStatement("update member set pwd=?,email=?,birth=? where id=?");
+			psmt.setString(1, member.getPwd());
+			psmt.setString(2, member.getEmail());
+			psmt.setString(3, member.getBirth());
+			psmt.setString(4, member.getId());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("데이터 베이스 수정 오류" + e);
+		} finally {
+			close(conn, psmt);
+		}
+	}
+
+	// 7. 회원정보 db 삭제
+		public void memberDelete(String id, String pwd){
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ConnectionPool cp = ConnectionPool.getInstance();
+			
+			conn = cp.getConnection();
+			
+			try {
+				psmt = conn.prepareStatement("delete from member where id=? and pwd = ?");
+				psmt.setString(1, id);
+				psmt.setString(2, pwd);
+				psmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("데이터 베이스 삭제 오류" + e);
+			} finally {
+				close(conn, psmt);
+			}
+		}
+	
 
 }

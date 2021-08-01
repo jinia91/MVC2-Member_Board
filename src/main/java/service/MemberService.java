@@ -6,6 +6,10 @@ import beans.MemberDTO;
 // 회원정보에 대한 로직을 담당하는 모델
 // 1. 회원가입 로직
 // 2. 로그인 로직
+// 3. 회원비밀번호 찾기 로직
+// 4. 회원정보 전부 불러오기 로직
+// 5. 회원정보 수정 로직
+// 6. 회원정보 삭제 로직
 
 public class MemberService {
 
@@ -34,6 +38,31 @@ public class MemberService {
 		int loginResult = dao.memberLogin(id,pwd);  // 1,0,-1로 로직 결과값 반환
 		
 		return loginResult;
+	}
+	
+	//3. 회원 비밀번호 찾기
+	public String memberSearch(String id, String email) {
+		String pwd = dao.memberSearch(id, email);
+		return pwd;
+	}
+	
+	
+	//4. 회원 정보 전부 불러오기
+	public MemberDTO memberSearchAll(String id, String pwd) {
+		MemberDTO member = dao.memberSearchAll(id, pwd);
+		return member;
+	}
+	
+	//5. 회원정보 수정하기
+	public void MemberUpdate(MemberDTO member) {
+		dao.memberUpdate(member);
+	}
+	
+	//6. 회원정보 삭제
+	public void MemberDelete(String id, String pwd) {
+		
+		dao.memberDelete(id,pwd);
+		
 	}
 	
 }

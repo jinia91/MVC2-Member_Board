@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 결과</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<h3> ${id} 님 가입이 완료되었습니다! </h3>
+${id} 님의 비밀번호는 ${pwd} 입니다.<br>
 
 
 <a href="../index.jsp"> Home </a>
+
 
 </body>
 </html>

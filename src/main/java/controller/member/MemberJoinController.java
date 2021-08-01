@@ -29,7 +29,7 @@ public class MemberJoinController implements Controller {
 		String birth = request.getParameter("birth");
 		String gender = request.getParameter("gender");
 		
-		// 1. 유효성 체크 - 1) 공백검사 2) 추후 추가개발 프론트단/백단 모두 필요
+		// 1. 유효성 체크 - 1) 공백검사 2) 추후 추가개발 프론트단/백단 모두 필요 아이디 / 이메일 중복검사
 		if(id.isEmpty()||pwd.isEmpty()||email.isEmpty()||birth.isEmpty()) {
 			
 			request.setAttribute("error", "모든 항목을 빠짐없이 적어주시기 바랍니다!");

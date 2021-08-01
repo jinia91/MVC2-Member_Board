@@ -40,9 +40,6 @@ pageEncoding="UTF-8"%>
       background-color: rgba(100, 198, 237, 0.212);
     }
 
-
-
-    
   </style>
 
 
@@ -50,24 +47,29 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
+<c:if test="${sessionID==null}">
 
-  <form id="formbox" action="MemberLogin.do" method="POST">
+  <form id="formbox">
 
-    <div> <input id="IDin" type="text" name="id" placeholder="아이디"></div>
+    <div> <input id="IDin" type="text" name="id" placeholder="아이디" autocomplete = "off"></div>
 
     <div> <input id="PWDin" type="password" name="pwd" placeholder="비밀번호"> </div>
-
-    <input id="login" type="submit" name ="log" value = "로그인" />
-    <input id="join" type="submit"  name ="jo" value = "회원가입" />
-
+	
+	<div>
+         <button type="submit" formaction="MemberLogin.do"
+         formmethod="post">로그인</button>
+         <button type="submit" formaction="MemberJoin.do"
+         formmethod="post">회원가입</button>
+    </div>     
 
   </form>
-
-${error}<br>
- 
+</c:if>
+<c:if test="${sessionID!=null}">로그인상태입니다.<br>
+	<a href="../index.jsp"> Home </a><br>
+</c:if>
 <c:if test="${loginResult==0}">비밀번호가 틀렸습니다.</c:if>
 <c:if test="${loginResult==-1}">아이디가 없습니다. 회원가입해주세요</c:if>
-
+${error}<br> 
 </body>
 
 </html>

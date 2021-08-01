@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h3>${sessionID} 님 성공적으로 로그인되었습니다!</h3>
+	<h3>${sessionID} 님 정보가 성공적으로 수정되었습니다.</h3>
 
 	<a href="../index.jsp"> Home </a>
 
