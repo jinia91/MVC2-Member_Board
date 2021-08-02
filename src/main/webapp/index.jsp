@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>회원가입 게시판 만들기</title>
+<title>MVC2 회원가입 게시판</title>
 </head>
 
 <body>
@@ -39,9 +39,13 @@
 			<a href="./member/MemberDelete.jsp">
 				<LI>회원탈퇴</LI>
 			</a>
+			<a href="./BBS/BBSList.do">
+			<li>게시판 보기</li>
+			</a>
+			
 		</c:if>
-
-
+		
+		
 	</UL>
 
 

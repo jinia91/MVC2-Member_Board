@@ -4,6 +4,8 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import controller.BBS.BBSListController;
+import controller.BBS.BBSWriteController;
 import controller.member.MemberDeleteController;
 import controller.member.MemberJoinController;
 import controller.member.MemberLoginController;
@@ -28,7 +30,8 @@ public class FrontController extends HttpServlet {
 		
 		// 2. 서브 컨트롤러들 객체 생성
 		list = new HashMap<String,Controller>();
-		
+
+		// 회원가입 관련
 		list.put("MemberJoin.do", new MemberJoinController()); 
 		list.put("MemberLogin.do", new MemberLoginController());
 		list.put("MemberLogout.do", new MemberLogoutController());
@@ -36,6 +39,10 @@ public class FrontController extends HttpServlet {
 		list.put("MemberSearchAll.do", new MemberSearchAllController());
 		list.put("MemberUpdate.do", new MemberUpdateController());
 		list.put("MemberDelete.do", new MemberDeleteController());
+		// 게시판 관련
+		list.put("BBSList.do", new BBSListController());
+		list.put("BBSWrite.do", new BBSWriteController());
+		
 
 	}
 

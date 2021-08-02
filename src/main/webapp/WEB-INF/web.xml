@@ -6,6 +6,8 @@
 
 	<display-name>MVC2Board</display-name>
 
+
+
 	<!-- 커넥션풀 설정 -->
 	<resource-ref>
 		<description>Oracle Datasource</description>
