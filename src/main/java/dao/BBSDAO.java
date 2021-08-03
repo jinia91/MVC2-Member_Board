@@ -179,4 +179,53 @@ public class BBSDAO {
 		return dto;
 	}
 
+	public void BBSDelete(String bbsId) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		
+		conn = cp.getConnection();
+
+		try {
+			psmt = conn.prepareStatement("delete from BBS where bbsid=?");
+			psmt.setString(1, bbsId);
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("데이터 베이스 삭제 오류" + e);
+		} finally {
+			close(conn, psmt);
+		}
+	}
+
+	public void BBSUpdate(BBSDTO dto) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		
+		conn = cp.getConnection();
+		try {
+			psmt = conn.prepareStatement("update BBS set bbstitle=?,"
+					+ " bbscontent=? where bbsid =?");
+		
+			psmt.setString(1, dto.getBbsTitle());
+			psmt.setString(2, dto.getBbsContent());
+			psmt.setInt(3, dto.getBbsId());
+		
+			psmt.executeUpdate();
+		
+		
+		} catch (SQLException e) {
+			System.out.println("게시물 작성 오류" + e);
+		} finally {
+			
+			close(conn, psmt); 
+			
+		}
+		
+	}
+		
+		
+		
+	
+
 }

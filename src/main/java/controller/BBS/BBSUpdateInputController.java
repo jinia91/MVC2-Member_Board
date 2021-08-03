@@ -7,15 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.BBSDTO;
 import controller.Controller;
 import controller.HttpUtil;
 import service.BBSService;
 
-public class BBSDeleteController implements Controller {
+public class BBSUpdateInputController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		BBSDTO dto = null;
 		String bbsId = request.getParameter("bbsId");
 		String Id = request.getParameter("id");
 		HttpSession session = request.getSession();
@@ -29,12 +31,11 @@ public class BBSDeleteController implements Controller {
 		
 		
 		BBSService service = BBSService.getInstance();
-		service.BBSDelete(bbsId);
-		HttpUtil.forward(request, response, "/WEB-INF/result/BBS/BBSDeleteOutput.jsp");
-		
+		dto = service.BBSView(bbsId);
+		request.setAttribute("BBS", dto);
+		HttpUtil.forward(request, response, "/WEB-INF/result/BBS/BBSUpdateInput.jsp");
+	
 		
 	}
-		
-		
-		
+
 }

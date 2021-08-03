@@ -51,8 +51,16 @@
 	</table>
 	
 	<a href="BBSList.do"><button>목록</button></a>	
-	<a href="BBSUpdate.do?bbsId=${BBS.bbsId}&id=${BBS.id}"><button>수정</button></a>
+	
+	
+	<c:if test="${sessionID==BBS.id}">    
+	
+	
+	<a href="BBSUpdateInput.do?bbsId=${BBS.bbsId}&id=${BBS.id}"><button>수정</button></a>
 	<a href="BBSDelete.do?bbsId=${BBS.bbsId}&id=${BBS.id}"><button>삭제</button></a> 	
+	
+	</c:if>	
+	
 	<a href="./BBSWrite.jsp"><button>글쓰기</button></a>
    
 </body>

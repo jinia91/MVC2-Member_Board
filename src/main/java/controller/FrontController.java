@@ -1,12 +1,18 @@
 package controller;
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import controller.BBS.BBSDeleteController;
 import controller.BBS.BBSListController;
-import controller.BBS.BBSUpdateController;
+import controller.BBS.BBSUpdateInputController;
+import controller.BBS.BBSUpdateResultController;
 import controller.BBS.BBSViewController;
 import controller.BBS.BBSWriteController;
 import controller.member.MemberDeleteController;
@@ -16,8 +22,6 @@ import controller.member.MemberLogoutController;
 import controller.member.MemberSearchAllController;
 import controller.member.MemberSearchController;
 import controller.member.MemberUpdateController;
-
-import java.util.*;
 
 
 public class FrontController extends HttpServlet {
@@ -46,7 +50,8 @@ public class FrontController extends HttpServlet {
 		list.put("BBSList.do", new BBSListController());
 		list.put("BBSWrite.do", new BBSWriteController());
 		list.put("BBSView.do", new BBSViewController());
-		list.put("BBSUpdate.do", new BBSUpdateController());
+		list.put("BBSUpdateInput.do", new BBSUpdateInputController());
+		list.put("BBSUpdateResult.do", new BBSUpdateResultController());
 		list.put("BBSDelete.do", new BBSDeleteController());
 		
 

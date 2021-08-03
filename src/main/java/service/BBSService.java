@@ -67,10 +67,17 @@ public class BBSService {
 		}
 		
 		// 게시물 삭제
-		public void BBSDelete() {
-			
+		public void BBSDelete(String bbsId) {
+			dao.BBSDelete(bbsId);
 		}
+		
+		
+		public void BBSUpdate(BBSDTO dto) {
 
+			 dao.BBSUpdate(dto);	
+				
+		}
+		
 	
 }
 
