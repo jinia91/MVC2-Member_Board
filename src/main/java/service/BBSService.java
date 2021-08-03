@@ -10,6 +10,8 @@ import beans.BBSDTO;
 // 게시판 관련 로직을 담당하는 모델
 // 1. 전체 게시물 표시
 // 2. 게시물 작성
+// 3. 글 조회시 조회수 +1
+// 4. 글 조회시 글내용 출력
 
 
 public class BBSService {
@@ -51,6 +53,21 @@ public class BBSService {
 		public void BBSWrite(BBSDTO dto) {
 			
 		 dao.BBSWrite(dto);	
+			
+		}
+		
+		
+		// 게시물 조회시 조회수 +1
+		
+		
+		
+		// 게시물 보기
+		public BBSDTO BBSView(String bbsId) {
+			return dao.BBSView(bbsId);
+		}
+		
+		// 게시물 삭제
+		public void BBSDelete() {
 			
 		}
 

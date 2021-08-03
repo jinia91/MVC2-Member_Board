@@ -82,7 +82,7 @@ public class BBSDAO {
 				dto.setBbsContent(rs.getString("BBSCONTENT"));
 				dto.setBbsDate(rs.getTimestamp("BBSDATE"));
 				dto.setBbsHit(rs.getInt("BBSHIT"));
-				dto.setId(rs.getNString("ID"));
+				dto.setId(rs.getString("ID"));
 			
 				list.add(dto);
 			
@@ -103,6 +103,9 @@ public class BBSDAO {
 	}
 	
 	
+	
+	
+	// 2. 게시물 작성관련 데이터 db운반
 	public void BBSWrite(BBSDTO dto) {
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -122,9 +125,58 @@ public class BBSDAO {
 		
 		} catch (SQLException e) {
 			System.out.println("게시물 작성 오류" + e);
+		} finally {
+			
+			close(conn, psmt); 
+			
 		}
 		
 		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	// 3. 게시물 내용 열기
+	public BBSDTO BBSView(String bbsId) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ConnectionPool cp = ConnectionPool.getInstance();
+		ResultSet rs = null;
+		BBSDTO dto = new BBSDTO();
+		
+		conn = cp.getConnection();
+		try {
+			psmt = conn.prepareStatement("select * from BBS where BBSID = ?");
+			
+			psmt.setString(1, bbsId);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setBbsId(rs.getInt("BBSID"));
+				dto.setBbsTitle(rs.getString("BBSTITLE"));
+				dto.setBbsContent(rs.getString("BBSCONTENT"));
+				dto.setBbsDate(rs.getTimestamp("BBSDATE"));
+				dto.setBbsHit(rs.getInt("BBSHIT"));
+				dto.setId(rs.getString("ID"));
+				
+			}
+		
+			
+			
+		} catch(Exception e){
+			System.out.println("게시물 보기 오류" + e);
+		} finally {
+			close(conn, psmt, rs);
+		}
+		
+		
+		return dto;
 	}
 
 }

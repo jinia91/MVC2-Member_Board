@@ -22,12 +22,12 @@
     <div class="container">
 
 
-        <table border="1">
+        <table border="1" width ="100%">
 
         <thead>
             <tr>    
                 <th>번호</th>
-                <th width="200px">제 목</th>
+                <th width="70%">제 목</th>
                 <th>작성날짜</th>
                 <th>작성자</th>
                 <th>조회수</th>
@@ -41,8 +41,9 @@
         <tbody>
             <tr>
                 <td>${BBS.bbsId}</td>
-                <td>${BBS.bbsTitle}</td>
+                <td><a href="BBSView.do?bbsId=${BBS.bbsId}">${BBS.bbsTitle}</a></td>
                 <td><fmt:formatDate value="${BBS.bbsDate}"/></td>
+                
                 <td>${BBS.id}</td>
                 <td>${BBS.bbsHit}</td>
             </tr>

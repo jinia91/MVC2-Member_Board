@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,12 @@
 </head>
 <body>
     <h1> 게시물 작성하기</h1>
+    
+    	<c:if test="${sessionID!=null}">    
+			<!-- 로그인 세션 있을때 -->
+            ${sessionID} 님이 로그인중입니다.<br>
+	</c:if>	
+    
 <div>
     <form method="post">
 

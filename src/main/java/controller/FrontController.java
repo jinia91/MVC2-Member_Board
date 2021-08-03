@@ -4,7 +4,10 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import controller.BBS.BBSDeleteController;
 import controller.BBS.BBSListController;
+import controller.BBS.BBSUpdateController;
+import controller.BBS.BBSViewController;
 import controller.BBS.BBSWriteController;
 import controller.member.MemberDeleteController;
 import controller.member.MemberJoinController;
@@ -42,6 +45,9 @@ public class FrontController extends HttpServlet {
 		// 게시판 관련
 		list.put("BBSList.do", new BBSListController());
 		list.put("BBSWrite.do", new BBSWriteController());
+		list.put("BBSView.do", new BBSViewController());
+		list.put("BBSUpdate.do", new BBSUpdateController());
+		list.put("BBSDelete.do", new BBSDeleteController());
 		
 
 	}
