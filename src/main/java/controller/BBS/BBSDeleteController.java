@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.HttpUtil;
+import service.BBSService;
 import service.MemberService;
 
 public class BBSDeleteController implements Controller {
@@ -34,7 +35,8 @@ public class BBSDeleteController implements Controller {
 		}
 		
 		
-		
+		BBSService service = BBSService.getInstance();
+		service.BBSDelete();
 		
 	}
 		
